@@ -71,6 +71,34 @@
             list-style: none;
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
         nav a {
             text-decoration: none;
             color: var(--gray);
@@ -677,12 +705,31 @@
                 font-size: 1.1rem;
             }
 
+            .hamburger {
+                display: flex;
+            }
+
             nav ul {
-                gap: 1rem;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                flex-direction: column;
+                background: rgba(10, 10, 10, 0.98);
+                padding: 5rem 2rem 2rem;
+                gap: 2rem;
+                transition: right 0.3s ease;
+                border-left: 1px solid var(--border);
+            }
+
+            nav ul.active {
+                right: 0;
             }
 
             nav a {
-                font-size: 0.85rem;
+                font-size: 1rem;
             }
 
             section {
@@ -720,13 +767,18 @@
     <nav id="navbar">
         <div class="container">
             <div class="logo">SHAMIKA DHARMASIRI</div>
-            <ul>
-                <li><a href="#about">ABOUT</a></li>
-                <li><a href="#skills">SKILLS</a></li>
-                <li><a href="#projects">PROJECTS</a></li>
-                <li><a href="#testimonials">TESTIMONIALS</a></li>
-                <li><a href="#experience">EXPERIENCE</a></li>
-                <li><a href="#contact">CONTACT</a></li>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="nav-menu">
+                <li><a href="#about" onclick="closeMenu()">ABOUT</a></li>
+                <li><a href="#skills" onclick="closeMenu()">SKILLS</a></li>
+                <li><a href="#projects" onclick="closeMenu()">PROJECTS</a></li>
+                <li><a href="#testimonials" onclick="closeMenu()">TESTIMONIALS</a></li>
+                <li><a href="#experience" onclick="closeMenu()">EXPERIENCE</a></li>
+                <li><a href="#contact" onclick="closeMenu()">CONTACT</a></li>
             </ul>
         </div>
     </nav>
@@ -1076,6 +1128,21 @@
                 navbar.classList.remove('scrolled');
             }
         });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
     </script>
 </body>
 </html>
