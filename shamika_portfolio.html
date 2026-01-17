@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shamika Dharmasiri - Software Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --accent: #d4af37;
+            --bg: #0a0a0a;
+            --text: #ffffff;
+            --gray: #b0b0b0;
+            --light-gray: #1a1a1a;
+            --border: #2a2a2a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.75rem 0;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: var(--text);
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--gray);
+            font-size: 0.95rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Sections */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section:nth-child(2) { animation-delay: 0.1s; }
+        section:nth-child(3) { animation-delay: 0.2s; }
+        section:nth-child(4) { animation-delay: 0.3s; }
+        section:nth-child(5) { animation-delay: 0.4s; }
+        section:nth-child(6) { animation-delay: 0.5s; }
+        section:nth-child(7) { animation-delay: 0.6s; }
+        section:nth-child(8) { animation-delay: 0.7s; }
+
+        section:first-of-type {
+            padding-top: 0;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+            letter-spacing: -2px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            letter-spacing: -1px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--accent);
+            animation: expandLine 0.8s ease forwards;
+        }
+
+        @keyframes expandLine {
+            from { width: 0; }
+            to { width: 60px; }
+        }
+
+        /* Hero Section */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent));
+            opacity: 0.03;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.03; }
+            50% { opacity: 0.08; }
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            width: 100%;
+        }
+
+        .hero-content {
+            max-width: 60%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-image {
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-image img {
+            width: 320px;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .accent-line {
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            margin: 2rem 0;
+            animation: expandWidth 1s ease forwards;
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 80px; }
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: var(--gray);
+            max-width: 600px;
+            line-height: 1.9;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--accent);
+            text-decoration: none;
+            border: 2px solid var(--accent);
+            font-weight: 400;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        .cta-button:hover {
+            color: var(--bg);
+        }
+
+        /* About Section */
+        #about .content {
+            max-width: 900px;
+        }
+
+        #about p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: var(--light-gray);
+            padding: 2rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .skill-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            font-weight: 400;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--gray);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: var(--light-gray);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background: var(--accent);
+            transition: height 0.4s ease;
+        }
+
+        .project-card:hover::before {
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateX(10px);
+            border-color: var(--accent);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .project-card .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech-badge {
+            padding: 0.25rem 0.75rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .project-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 400;
+            margin-top: 1rem;
+            display: inline-block;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            transform: translateX(5px);
+        }
+
+        /* Testimonials Section */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--light-gray);
+            padding: 2.5rem;
+            border: 1px solid var(--border);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-photo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--border);
+            border: 2px solid var(--accent);
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+            font-weight: 400;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            max-width: 900px;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .timeline-item {
+            padding-left: 4rem;
+            margin-bottom: 4rem;
+            position: relative;
+            opacity: 0;
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 2px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover::before {
+            transform: scale(1.3);
+            box-shadow: 0 0 15px var(--accent);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 25px;
+            width: 2px;
+            height: calc(100% + 2rem);
+            background: var(--border);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-date {
+            font-size: 0.95rem;
+            color: var(--accent);
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .timeline-title {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: var(--gray);
+            line-height: 1.9;
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+        }
+
+        .contact-description {
+            color: var(--gray);
+            margin: 0 auto 3rem;
+            max-width: 600px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.25rem 2.5rem;
+            border: 2px solid var(--border);
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .contact-link:hover::before {
+            left: 0;
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent);
+            color: var(--bg);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--light-gray);
+            padding: 2.5rem;
+            text-align: center;
+            color: var(--gray);
+            border-top: 1px solid var(--border);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-image img {
+                width: 200px;
+                height: 200px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            .projects-grid,
+            .testimonials-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                padding-left: 3rem;
+            }
+        }
+
+        /* Smooth scroll progress indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--accent);
+            width: 0%;
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="logo">SHAMIKA DHARMASIRI</div>
+            <ul>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#skills">SKILLS</a></li>
+                <li><a href="#projects">PROJECTS</a></li>
+                <li><a href="#testimonials">TESTIMONIALS</a></li>
+                <li><a href="#experience">EXPERIENCE</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Shamika<br>Dharmasiri</h1>
+                <div class="accent-line"></div>
+                <p class="hero-subtitle">Software Engineer | Enterprise Solutions & AI Innovation</p>
+                <p class="hero-description">
+                    10 years of crafting enterprise solutions across Singapore and Australia.
+                    Currently riding the AI wave with agentic frameworks, prompt engineering, and cloud-native architectures.
+                </p>
+                <a href="#contact" class="cta-button">LET'S CONNECT</a>
+            </div>
+            <div class="hero-image">
+                <img src="my.png" alt="Shamika Dharmasiri">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="content">
+            <p>
+                I'm a full-stack engineer from Sri Lanka 🇱🇰, currently based in Australia 🇦🇺, with a decade of experience 
+                building scalable enterprise applications. My journey has taken me through Singapore's dynamic tech scene 
+                and Australia's innovative landscape, working across diverse domains from banking and healthcare to 
+                telecommunications and retail.
+            </p>
+            <p>
+                As a Senior Software Engineering Consultant at Cognizant, I specialize in blending traditional enterprise 
+                development with cutting-edge AI capabilities. I'm passionate about creating solutions that make a real 
+                impact—like building AI tools that help clinical managers focus more on patient care and less on paperwork.
+            </p>
+            <p>
+                When I'm not engineering solutions, you'll find me Latin dancing, taking slow walks in nature, running on 
+                Saturdays, cycling through summer, practicing mindfulness, or speaking at Toastmasters. I believe the best 
+                ideas come when you step away from the screen.
+            </p>
+            <p>
+                I'm a University of Peradeniya graduate and an engineer by heart ❤️—always learning, always building, 
+                and occasionally saying unhinged things that make my colleagues laugh.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills & Tech Stack</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Backend</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">Spring Boot</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">FastAPI</span>
+                    <span class="skill-tag">.NET</span>
+                    <span class="skill-tag">C#</span>
+                    <span class="skill-tag">Kotlin</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Frontend</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">HTML/CSS</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Cloud & AI</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Azure</span>
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">AI Foundry</span>
+                    <span class="skill-tag">Copilot Studio</span>
+                    <span class="skill-tag">Prompt Engineering</span>
+                    <span class="skill-tag">Agentic Frameworks</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Platforms & Tools</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Power Platform</span>
+                    <span class="skill-tag">Power Automate</span>
+                    <span class="skill-tag">SharePoint</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">Agile/Scrum</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>AI Debate Arena</h3>
+                <p class="description">
+                    A multi-agent Streamlit application where AI agents debate topics, judge arguments, and validate results in real-time. Features 4 specialized agents (Pro, Con, Judge, Validator) with multiple debate tones, real-time execution, score tracking, and downloadable transcripts.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Streamlit</span>
+                    <span class="tech-badge">Multi-Agent AI</span>
+                    <span class="tech-badge">Claude AI</span>
+                </div>
+                <a href="https://github.com/shamika050/ai-debate-arena" target="_blank" class="project-link">VIEW PROJECT →</a>
+            </div>
+
+            <div class="project-card">
+                <h3>PDF Form Converter</h3>
+                <p class="description">
+                    Convert static/scanned PDFs into interactive fillable forms using AWS Textract and Claude AI while maintaining perfect visual fidelity. Features automatic field detection, AI-powered validation, intelligent sizing, batch processing, and quality verification.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">AWS Textract</span>
+                    <span class="tech-badge">Claude Vision</span>
+                    <span class="tech-badge">PDF Processing</span>
+                </div>
+                <a href="https://github.com/shamika050/editable-pdf-form-converter" target="_blank" class="project-link">VIEW PROJECT →</a>
+            </div>
+
+            <div class="project-card">
+                <h3>Investment Portfolio Tracker</h3>
+                <p class="description">
+                    Full-stack application to track investment portfolios across multiple currencies with AI-powered insights. Features portfolio dashboard, multi-currency support, stock price integration, historical tracking, Claude AI recommendations, and Excel import/export.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-badge">React</span>
+                    <span class="tech-badge">FastAPI</span>
+                    <span class="tech-badge">Claude AI</span>
+                    <span class="tech-badge">Alpha Vantage</span>
+                </div>
+                <a href="https://github.com/shamika050/track-portpolio" target="_blank" class="project-link">VIEW PROJECT →</a>
+            </div>
+
+            <div class="project-card">
+                <h3>Gratitude Journal</h3>
+                <p class="description">
+                    Full-stack web application for daily gratitude practice with three daily entries, complete history viewing, date search, rotating daily quotes, and Google OAuth authentication. Data stored securely in Google Sheets with seamless Drive integration.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-badge">React</span>
+                    <span class="tech-badge">TypeScript</span>
+                    <span class="tech-badge">FastAPI</span>
+                    <span class="tech-badge">Google Sheets</span>
+                </div>
+                <a href="https://github.com/shamika050/gratitude-journal" target="_blank" class="project-link">VIEW PROJECT →</a>
+            </div>
+
+            <div class="project-card">
+                <h3>Government Procurement Management System</h3>
+                <p class="description">
+                    Enterprise-level e-procurement platform for Sri Lankan government agencies. Supports multiple procurement types (RFQ, RFP, Tender), configurable approval workflows, vendor management, bid management, multi-evaluator scoring, Q&A system, and comprehensive audit trails with role-based access control.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-badge">React</span>
+                    <span class="tech-badge">Java</span>
+                    <span class="tech-badge">Spring Boot</span>
+                    <span class="tech-badge">PostgreSQL</span>
+                </div>
+                <a href="https://github.com/shamika050/procurement-mng-system" target="_blank" class="project-link">VIEW PROJECT →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <h2>Testimonials</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    Shamika is a highly reliable and well-organized individual with a strong foundation in software engineering. His broad knowledge base, combined with his values and work ethic, make him a valuable asset in any professional setting. He consistently demonstrates integrity and dedication, qualities that enhance his effectiveness as a team member.
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-photo"></div>
+                    <div class="author-info">
+                        <h4>Lalitha</h4>
+                        <p>LinkedIn Recommendation</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    I had the pleasure of working with Shamika on a project during our time at Zühlke, where we both served as Advanced Software Engineers. Shamika consistently demonstrated exceptional proficiency in React and Kotlin, leveraging his deep knowledge to deliver high-quality solutions efficiently. His understanding of the banking domain was invaluable to our project's success.
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-photo"></div>
+                    <div class="author-info">
+                        <h4>Channa</h4>
+                        <p>Advanced Software Engineer, Zühlke Group</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    I had the pleasure of working with Shamika on a wealth management client pricing platform, and I highly recommend him for any development role. Shamika consistently demonstrated a positive learning attitude in React & Kotlin. He excelled in teamwork and communication, ensuring seamless collaboration with our team. His proactive and dedicated approach to his work is truly commendable.
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-photo"></div>
+                    <div class="author-info">
+                        <h4>Julian</h4>
+                        <p>Colleague, Zühlke Group</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <p class="timeline-date">MARCH 2023 - PRESENT</p>
+                <h3 class="timeline-title">Senior Consultant</h3>
+                <p class="timeline-company">Cognizant Servian - Australia</p>
+                <p class="timeline-description">
+                    Leading AI-powered solutions including Clinical Notes Summarization System using React, TypeScript, Python, Microsoft Copilot Studio, Power Platform, and Azure AI Foundry. Developed Digital Search backend with Java, Spring Boot, Azure Functions, and Databricks. Optimized Azure Logic Apps for data migration and led SharePoint migration projects using Power Automate and Azure Functions.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <p class="timeline-date">JUNE 2022 - FEBRUARY 2023</p>
+                <h3 class="timeline-title">Advanced Software Engineer</h3>
+                <p class="timeline-company">Zühlke Group - Singapore</p>
+                <p class="timeline-description">
+                    Engaged with Credit Suisse to develop a sophisticated pricing tool for relationship managers, enhancing their ability to provide accurate and timely pricing information to clients.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <p class="timeline-date">APRIL 2021 - JUNE 2022</p>
+                <h3 class="timeline-title">Software Engineer</h3>
+                <p class="timeline-company">Crédit Agricole CIB - Singapore</p>
+                <p class="timeline-description">
+                    Developed FATCA (Foreign Account Tax Compliance Act) compliance solutions for Crédit Agricole bank, ensuring regulatory compliance and streamlined reporting processes.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <p class="timeline-date">SEPTEMBER 2018 - APRIL 2021</p>
+                <h3 class="timeline-title">R&D Software Engineer</h3>
+                <p class="timeline-company">Gemalto (now Thales Digital Identity & Security) - Singapore</p>
+                <p class="timeline-description">
+                    Developed Advanced-OTA solution enabling Mobile Network Operators to dynamically manage device lifecycles and launch new services securely without infrastructure over-investment. Built solutions for connected device provisioning and management.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <p class="timeline-date">FEBRUARY 2017 - SEPTEMBER 2018</p>
+                <h3 class="timeline-title">Senior Software Engineer</h3>
+                <p class="timeline-company">DSTA - Singapore</p>
+                <p class="timeline-description">
+                    Developed GeBIZ, Singapore Government's one-stop e-procurement portal. Responsibilities included implementing new features, bug fixes, creating UML diagrams, managing deployment cycles, and responding to urgent production issues. Technologies: Java, EJB, JSF, Hibernate, SQL, WebLogic.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <p class="timeline-date">AUGUST 2015 - JANUARY 2017</p>
+                <h3 class="timeline-title">Software Engineer</h3>
+                <p class="timeline-company">Azbil Corporation - Singapore</p>
+                <p class="timeline-description">
+                    Developed Facility Management System (FMS) for Integrated Building Management System (IBMS). Implemented functional, continuous, performance, and integrated testing procedures. Created specification diagrams, class diagrams, and sequence diagrams using Enterprise Architect. Technologies: Java, Struts, Spring MVC, Hibernate.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <p class="timeline-date">DECEMBER 2014 - AUGUST 2015</p>
+                <h3 class="timeline-title">Temporary Instructor</h3>
+                <p class="timeline-company">University of Peradeniya, Department of Computer Engineering - Sri Lanka</p>
+                <p class="timeline-description">
+                    Instructed "Network and Web Application Design" course. Conducted lab sessions on Java threading, concurrency handling, Servlets, JSP, RPC, and introductory sessions for Spring MVC.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <p class="timeline-date">2010 - 2014</p>
+                <h3 class="timeline-title">Bachelor of Science in Engineering</h3>
+                <p class="timeline-company">University of Peradeniya - Sri Lanka</p>
+                <p class="timeline-description">
+                    Completed Bachelor's degree in Computer Engineering with strong foundation in software engineering, algorithms, and system design.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Let's Connect</h2>
+        <p class="contact-description">
+            I'm always open to interesting conversations about AI, enterprise architecture, or just vibing about tech. 
+            Feel free to reach out!
+        </p>
+        <div class="contact-links">
+            <a href="https://www.linkedin.com/in/shamikadharmasiri/" target="_blank" class="contact-link">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+                LINKEDIN
+            </a>
+            <a href="https://github.com/shamika050" target="_blank" class="contact-link">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                GITHUB
+            </a>
+            <a href="mailto:shamikadineshdha@gmail.com" class="contact-link">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/>
+                </svg>
+                EMAIL
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Shamika Dharmasiri. Built with elegance and precision.</p>
+    </footer>
+
+    <script>
+        // Scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.querySelector('.scroll-progress');
+            const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            scrollProgress.style.width = scrollPercentage + '%';
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
